@@ -12,15 +12,16 @@ from kafka import KafkaConsumer, TopicPartition
 from json import loads
 
 topic = 'xx5'
+host = "10.61.158.29"
 
 
 def consumerAction():
     consumer = KafkaConsumer(
         topic,  # topic
         group_id="group_id_xuchu",
-        bootstrap_servers=['10.61.153.83:9092',
-                           '10.61.153.83:9093',
-                           '10.61.153.83:9094'],  # bootstrap server
+        bootstrap_servers=[f'{host}:9092',
+                           f'{host}:9093',
+                           f'{host}:9094'],  # bootstrap server
         # api_version=(0, 11, 3),
         auto_offset_reset='earliest',
         # consumer_timeout_ms=5000,

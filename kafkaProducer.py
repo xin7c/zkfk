@@ -11,12 +11,12 @@ from json import dumps
 from kafka import KafkaProducer
 
 topic = "xx5"
-
+host = "10.61.158.29"
 
 def conn_kafka():
-    producer = KafkaProducer(bootstrap_servers=['10.61.153.83:9092',
-                                                '10.61.153.83:9093',
-                                                '10.61.153.83:9094'],
+    producer = KafkaProducer(bootstrap_servers=[f'{host}:9092',
+                                                f'{host}:9093',
+                                                f'{host}:9094'],
                              compression_type='gzip')  # 连接kafka
     print(producer.bootstrap_connected())
     msg = f"{time.time()}".encode('utf-8')  # 发送内容,必须是bytes类型
