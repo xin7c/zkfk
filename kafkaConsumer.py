@@ -28,12 +28,13 @@ def consumerAction():
         # key_deserializer=bytes.decode,
         value_deserializer=bytes.decode,
         enable_auto_commit=True,
+        client_id='xuchu-mac-python3'
         # value_deserializer=lambda x: loads(x.decode('utf-8'))
     )
     consumer.partitions_for_topic(topic)
     print(consumer.topics())
     # print(consumer.position(TopicPartition(topic=u'xx5', partition=0)))
-    consumer.subscribe(topics=['xx5'])
+    consumer.subscribe(topics=[topic])
     logging.basicConfig(level=logging.INFO)
     logging.info('Receiving message...')
     # 手动拉取消息
