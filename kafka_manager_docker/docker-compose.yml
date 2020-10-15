@@ -14,4 +14,4 @@ services:
 networks:
   default:
     external:
-      name: zk_kafka_default
+      name: zkkafkadocker_default
