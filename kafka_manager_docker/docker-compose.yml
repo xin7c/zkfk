@@ -10,7 +10,7 @@ services:
       - kafka2
       - kafka3
     environment:
-      ZK_HOSTS: zk_kafka_zookeeper_1:2181
+      ZK_HOSTS: zookeeper:2181
 networks:
   default:
     external:
