@@ -44,4 +44,6 @@ def conn_kafka():
 if __name__ == '__main__':
     for i in range(1000):
         conn_kafka()
+        conn_kafka()
+        conn_kafka()
         time.sleep(0.5)

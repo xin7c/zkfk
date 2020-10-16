@@ -14,6 +14,7 @@ from functools import wraps
 
 topic = 'xx5'
 host = "10.61.158.29"
+group_id = "app-001"
 
 def logger(param):
     """ fcuntion from logger meta """
@@ -35,7 +36,7 @@ def logger(param):
 def consumerAction(arg):
     consumer = KafkaConsumer(
         topic,  # topic
-        group_id="group_id_xuchu",
+        group_id=group_id,
         bootstrap_servers=[f'{host}:9092',
                            f'{host}:9093',
                            f'{host}:9094'],  # bootstrap server
@@ -66,13 +67,13 @@ def consumerAction(arg):
                f"#偏移量{message.offset} " \
                f"#key={message.key} " \
                f"#value={message.value} "
-        time.sleep(0.5)
+        time.sleep(1)
         logging.info(f"线程[{threading.currentThread().ident}]-->" + recv)
 
 
 if __name__ == '__main__':
     threads = []
-    for i in range(1):
+    for i in range(3):
         t = threading.Thread(target=consumerAction, args=("参数",))
         threads.append(t)
     for t in threads:
