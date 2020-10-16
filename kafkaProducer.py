@@ -18,7 +18,7 @@ def conn_kafka():
                                                 f'{host}:9093',
                                                 f'{host}:9094'],
                              compression_type='gzip')  # 连接kafka
-    print(producer.bootstrap_connected())
+    # print(producer.bootstrap_connected())
     msg = f"{time.time()}".encode('utf-8')  # 发送内容,必须是bytes类型
     # 第1个参数为topic名称，必须指定
     # key:键，必须是字节字符串，可以不指定（但key和value必须指定1个），默认为None
@@ -41,4 +41,4 @@ def conn_kafka():
 if __name__ == '__main__':
     for i in range(1000):
         conn_kafka()
-        time.sleep(2)
+        time.sleep(0.5)
