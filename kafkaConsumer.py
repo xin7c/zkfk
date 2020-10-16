@@ -67,7 +67,7 @@ def consumerAction(arg):
                f"#key={message.key} " \
                f"#value={message.value} "
         time.sleep(0.5)
-        logging.info(f"线程[{threading.currentThread().ident}] -->" + recv)
+        logging.info(f"线程[{threading.currentThread().ident}]-->" + recv)
 
 
 if __name__ == '__main__':
