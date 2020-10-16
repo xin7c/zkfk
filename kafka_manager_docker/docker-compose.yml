@@ -6,12 +6,12 @@ services:
     ports:
       - "19000:9000"
     external_links:  # 连接本compose文件以外的container
-      - zk_kafka_kafka1_1
-      - zk_kafka_kafka2_1
-      - zk_kafka_kafka3_1
+      - kafka1
+      - kafka2
+      - kafka3
     environment:
-      ZK_HOSTS: zk_kafka_zookeeper_1:2181
+      ZK_HOSTS: zookeeper:2181
 networks:
   default:
     external:
-      name: zk_kafka_default
+      name: zkkafkadocker_default
