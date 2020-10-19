@@ -14,6 +14,28 @@ topic = "xx5"
 host = "10.61.158.29"
 
 
+class TokenBucket(object):
+
+    # rate是令牌发放速度，capacity是桶的大小
+    def __init__(self, rate, capacity):
+        self._rate = rate
+        self._capacity = capacity
+        self._current_amount = 0
+        self._last_consume_time = int(time.time())
+
+    # token_amount是发送数据需要的令牌数
+    def consume(self, token_amount):
+        increment = (int(time.time()) - self._last_consume_time) * \
+            self._rate  # 计算从上次发送到这次发送，新发放的令牌数量
+        self._current_amount = min(
+            increment + self._current_amount, self._capacity)  # 令牌数量不能超过桶的容量
+        if token_amount > self._current_amount:  # 如果没有足够的令牌，则不能发送数据
+            return False
+        self._last_consume_time = int(time.time())
+        self._current_amount -= token_amount
+        return True
+
+
 def conn_kafka():
     producer = KafkaProducer(bootstrap_servers=[f'{host}:9092',
                                                 f'{host}:9093',
@@ -36,14 +58,17 @@ def conn_kafka():
                            )
     result = future.get(timeout=60)  # future.get等待单条消息发送完成或超时
     print(result)
-    print(future.is_done)
+    # print(future.is_done)
 
     producer.close()
 
 
 if __name__ == '__main__':
+    tb = TokenBucket(1, 10)
+
     for i in range(1000):
-        conn_kafka()
-        conn_kafka()
-        conn_kafka()
-        time.sleep(0.5)
+        c = tb.consume(5)
+        print(f"令牌桶 {c}")
+        if c == True:
+            conn_kafka()
+        time.sleep(1)
