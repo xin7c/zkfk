@@ -11,7 +11,7 @@ import arrow
 from kafka import KafkaProducer
 
 topic = "xx5"
-host = "10.61.158.29"
+host = "10.61.153.225"
 
 
 class TokenBucket(object):
@@ -64,11 +64,15 @@ def conn_kafka():
 
 
 if __name__ == '__main__':
-    tb = TokenBucket(1, 10)
+    tb = TokenBucket(2, 10)
 
     for i in range(1000):
         c = tb.consume(5)
-        print(f"令牌桶 {c}")
         if c == True:
+            print(f"放行!!!")
             conn_kafka()
+            conn_kafka()
+            conn_kafka()
+        else:
+            print(f"令牌桶 {c}")
         time.sleep(1)

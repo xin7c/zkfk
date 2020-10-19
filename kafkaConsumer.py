@@ -13,7 +13,7 @@ from json import loads
 from functools import wraps
 
 topic = 'xx5'
-host = "10.61.158.29"
+host = "10.61.153.225"
 group_id = "app-001"
 
 def logger(param):
