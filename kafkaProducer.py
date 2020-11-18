@@ -11,7 +11,7 @@ import arrow
 from kafka import KafkaProducer
 
 topic = "xx5"
-host = "10.61.153.225"
+host = "10.61.158.71"
 
 
 class TokenBucket(object):

@@ -13,7 +13,7 @@ from json import loads
 from functools import wraps
 
 topic = 'xx5'
-host = "10.61.153.225"
+host = "10.61.158.71"
 group_id = "app-001"
 
 def logger(param):
@@ -42,7 +42,7 @@ def consumerAction(arg):
                            f'{host}:9094'],  # bootstrap server
         # api_version=(0, 11, 3),
         auto_offset_reset='earliest',
-        # consumer_timeout_ms=5000,
+        consumer_timeout_ms=30000,
         # key_deserializer=bytes.decode,
         value_deserializer=bytes.decode,
         enable_auto_commit=True,
